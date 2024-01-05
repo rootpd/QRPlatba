@@ -16,12 +16,12 @@ namespace Defr\QRPlatba;
 use DateTime;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelMedium;
-use Endroid\QrCode\Label\Alignment\LabelAlignmentLeft;
+use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Label\Font\OpenSans;
 use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\Label\LabelAlignment;
 use Endroid\QrCode\QrCode;
-use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeEnlarge;
+use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Writer\SvgWriter;
 use Iban\Validation\Iban;
@@ -724,9 +724,9 @@ class QRPlatba
         return QrCode::create((string) $this)
             ->setSize($size - ($margin * 2))
             ->setEncoding(new Encoding('UTF-8'))
-            ->setErrorCorrectionLevel(new ErrorCorrectionLevelMedium())
+            ->setErrorCorrectionLevel(ErrorCorrectionLevel::Medium)
             ->setMargin($margin)
-            ->setRoundBlockSizeMode(new RoundBlockSizeModeEnlarge())
+            ->setRoundBlockSizeMode(RoundBlockSizeMode::Enlarge)
             ->setForegroundColor(new Color(0, 0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255, 0));
     }
@@ -800,7 +800,7 @@ class QRPlatba
     {
         if ($this->label !== null) {
             return Label::create($this->label)
-                ->setAlignment(new LabelAlignmentLeft())
+                ->setAlignment(LabelAlignment::Left)
                 ->setFont(new OpenSans())
                 ->setTextColor(new Color(0, 0, 0, 0));
         }
